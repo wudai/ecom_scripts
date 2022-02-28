@@ -1,13 +1,13 @@
 import requests
 import re
 from urllib.parse import urlparse, parse_qs
-#print("Enter your link:")
-#url = input()
-#r = requests.get(url, allow_redirects=False)
-with open('tmp.html', 'r') as f:
-    content = f.read()
+print("Enter your link:")
+url = input()
+r = requests.get(url, allow_redirects=False)
+#with open('tmp.html', 'r') as f:
+#    content = f.read()
 pattern = re.compile("var url = '(https://.+)';", re.M|re.I)
-match_obj = pattern.search(content)
+match_obj = pattern.search(r.text)
 detail_url = match_obj.group(1)
 qs = parse_qs(urlparse(detail_url).query)
 id = ''
